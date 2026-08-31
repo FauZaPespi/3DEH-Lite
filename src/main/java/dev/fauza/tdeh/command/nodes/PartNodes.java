@@ -48,14 +48,18 @@ public final class PartNodes {
         return node;
     }
 
+    /**
+     * Built as {@code part add <name> <text|block|item> <value>}, matching the documented usage and
+     * every sibling part command, which all take the hologram name first.
+     */
     private static LiteralArgumentBuilder<CommandSourceStack> add(CommandSupport support) {
-        LiteralArgumentBuilder<CommandSourceStack> add = Commands.literal("add");
-        add.then(addBranch(support, "text", "text", StringArgumentType.greedyString(), null, TextPart::new));
-        add.then(addBranch(support, "block", "data", StringArgumentType.greedyString(),
+        var name = LifecycleNodes.named(support);
+        name.then(addBranch(support, "text", "text", StringArgumentType.greedyString(), null, TextPart::new));
+        name.then(addBranch(support, "block", "data", StringArgumentType.greedyString(),
                 Suggestions.blockMaterials(), BlockPart::new));
-        add.then(addBranch(support, "item", "material", StringArgumentType.word(),
+        name.then(addBranch(support, "item", "material", StringArgumentType.word(),
                 Suggestions.itemMaterials(), ItemPart::new));
-        return add;
+        return Commands.literal("add").then(name);
     }
 
     private static LiteralArgumentBuilder<CommandSourceStack> addBranch(
@@ -93,8 +97,7 @@ public final class PartNodes {
         if (suggestions != null) {
             value.suggests(suggestions);
         }
-        return Commands.literal(typeLiteral)
-                .then(LifecycleNodes.named(support).then(value));
+        return Commands.literal(typeLiteral).then(value);
     }
 
     private static LiteralArgumentBuilder<CommandSourceStack> remove(CommandSupport support) {

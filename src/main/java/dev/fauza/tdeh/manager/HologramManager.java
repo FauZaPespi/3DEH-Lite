@@ -239,11 +239,29 @@ public final class HologramManager {
         }
     }
 
-    /** Despawns everything. Used on shutdown and before a reload. */
+    /** Despawns everything through the scheduler. Used before {@code /3deh reload}. */
     public void despawnAll() {
         for (String name : List.copyOf(spawned.keySet())) {
             despawn(name);
         }
+    }
+
+    /**
+     * Removes every live entity immediately on the calling thread, bypassing the scheduler. Use only
+     * from {@code onDisable}.
+     *
+     * <p>Every scheduler, including {@code EntityScheduler}, refuses to register a new task once the
+     * plugin is disabled, so the normal {@link #despawnAll()} path throws there. Direct access is
+     * still safe at that point: on Folia, {@code onDisable} only runs during a full server shutdown
+     * (Folia disables {@code /reload} outright), by which time region ticking has already halted and
+     * control has moved to the shutdown thread; on Paper the calling thread already owns every entity
+     * on its own, single-threaded terms.
+     */
+    public void despawnAllImmediate() {
+        for (List<Display> displays : spawned.values()) {
+            displays.forEach(Display::remove);
+        }
+        spawned.clear();
     }
 
     // ---------------------------------------------------------------- persistence

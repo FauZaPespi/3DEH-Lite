@@ -61,9 +61,9 @@ public final class ThreeDehPlugin extends JavaPlugin {
         }
         if (manager != null) {
             manager.flush();
-            // Parts are non-persistent, so this is belt-and-braces rather than the thing that keeps
-            // the world clean; it matters for /reload, where the server keeps running.
-            manager.despawnAll();
+            // Every scheduler refuses new tasks once the plugin is disabled, so the scheduler-based
+            // despawnAll() would throw here; see despawnAllImmediate() for why direct removal is safe.
+            manager.despawnAllImmediate();
         }
     }
 
