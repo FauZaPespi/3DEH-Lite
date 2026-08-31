@@ -1,0 +1,60 @@
+name: 3DEH-Lite
+version: '${version}'
+main: dev.fauza.tdeh.ThreeDehPlugin
+api-version: '1.20'
+folia-supported: true
+description: Lightweight holograms built on native Display Entities.
+author: FauZaPespi
+website: https://github.com/FauZaPespi/3DEH-Lite
+
+# No `commands:` section on purpose: the command tree is registered through the Paper
+# lifecycle manager (Brigadier). Declaring it here too would register the label twice.
+
+permissions:
+  3deh.admin:
+    description: Grants every 3DEH command.
+    default: op
+    children:
+      3deh.command.create: true
+      3deh.command.remove: true
+      3deh.command.edit: true
+      3deh.command.part: true
+      3deh.command.list: true
+      3deh.command.info: true
+      3deh.command.select: true
+      3deh.command.move: true
+      3deh.command.teleport: true
+      3deh.command.reload: true
+  3deh.command.create:
+    description: Create holograms.
+    default: false
+  3deh.command.remove:
+    description: Delete holograms.
+    default: false
+  3deh.command.edit:
+    description: Edit hologram attributes.
+    default: false
+  3deh.command.part:
+    description: Manage the parts of a hologram.
+    default: false
+  3deh.command.list:
+    description: List holograms.
+    default: false
+  3deh.command.info:
+    description: Inspect a hologram.
+    default: false
+  3deh.command.select:
+    description: Select the hologram you are looking at.
+    default: false
+  3deh.command.move:
+    description: Move a hologram.
+    default: false
+  3deh.command.teleport:
+    description: Teleport to a hologram.
+    default: false
+  3deh.command.reload:
+    description: Reload configuration and holograms from disk.
+    default: false
+  3deh.command.help:
+    description: Show the command help.
+    default: true

@@ -1,0 +1,50 @@
+# 3DEH (Lite) configuration
+# Every value here is re-read by /3deh reload.
+
+defaults:
+  # Applied to newly created parts. Individual holograms can override all of these.
+  billboard: CENTER          # FIXED, VERTICAL, HORIZONTAL, CENTER
+  view-range: 1.0            # multiplier of the client entity render distance
+  shadow-radius: 0.0
+  shadow-strength: 1.0
+  text:
+    line-width: 200
+    see-through: false
+    text-shadow: false
+    alignment: CENTER        # CENTER, LEFT, RIGHT
+
+selection:
+  # /3deh select picks the hologram closest to where the player is looking.
+  # Display entities have no hitbox, so selection is angular rather than a raytrace.
+  max-distance: 24.0
+  # Half-angle of the selection cone, in degrees. Larger is more forgiving, less precise.
+  max-angle: 12.0
+
+storage:
+  # Seconds between automatic saves of data.yml. 0 disables the timer; every mutating
+  # command still marks the store dirty and it is always flushed on shutdown.
+  autosave-interval: 300
+
+messages:
+  prefix: "<gradient:#4facfe:#00f2fe><bold>3DEH</bold></gradient> <dark_gray>»</dark_gray> "
+  no-permission: "<red>You do not have permission to do that."
+  players-only: "<red>That command can only be run by a player."
+  unknown-hologram: "<red>No hologram named <white><name></white>."
+  name-taken: "<red>A hologram named <white><name></white> already exists."
+  invalid-name: "<red>Invalid name <white><name></white>. Use 1-32 characters from a-z, 0-9, _ or -."
+  no-selection: "<red>Select a hologram first with <white>/3deh select</white>, or pass its name."
+  nothing-looked-at: "<red>You are not looking at a hologram."
+  selected: "<green>Selected <white><name></white>."
+  deselected: "<green>Selection cleared."
+  created: "<green>Created <white><name></white>."
+  removed: "<green>Removed <white><name></white>."
+  moved: "<green>Moved <white><name></white> to your position."
+  updated: "<green>Set <white><attribute></white> on <white><name></white>."
+  part-added: "<green>Added part <white>#<index></white> to <white><name></white>."
+  part-removed: "<green>Removed part <white>#<index></white> from <white><name></white>."
+  part-not-found: "<red>Hologram <white><name></white> has no part <white>#<index></white>."
+  cannot-remove-last-part: "<red>A hologram must keep at least one part. Use <white>/3deh remove</white> instead."
+  wrong-part-type: "<red><attribute> only applies to <white><expected></white> parts, but part #<index> is <white><actual></white>."
+  reloaded: "<green>Reloaded <white><count></white> hologram(s)."
+  list-header: "<gray>Holograms <dark_gray>(page <white><page></white>/<white><pages></white>)"
+  list-empty: "<gray>No holograms yet. Create one with <white>/3deh create</white>."
