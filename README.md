@@ -116,6 +116,8 @@ installed. `./gradlew test` runs the unit suite on its own.
 
 ## Documentation
 
-Detailed guides live in [`wiki/`](wiki): [Home](wiki/Home.md),
-[Commands and Permissions](wiki/Commands-and-Permissions.md),
-[Configuration](wiki/Configuration.md), [Developer API](wiki/Developer-API.md).
+Detailed guides live on the [GitHub wiki](https://github.com/FauZaPespi/3DEH-Lite/wiki):
+[Home](https://github.com/FauZaPespi/3DEH-Lite/wiki/Home),
+[Commands and Permissions](https://github.com/FauZaPespi/3DEH-Lite/wiki/Commands-and-Permissions),
+[Configuration](https://github.com/FauZaPespi/3DEH-Lite/wiki/Configuration),
+[Developer API](https://github.com/FauZaPespi/3DEH-Lite/wiki/Developer-API).
