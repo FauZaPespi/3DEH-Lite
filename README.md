@@ -124,3 +124,7 @@ Detailed guides live on the [GitHub wiki](https://github.com/FauZaPespi/3DEH-Lit
 [Commands and Permissions](https://github.com/FauZaPespi/3DEH-Lite/wiki/Commands-and-Permissions),
 [Configuration](https://github.com/FauZaPespi/3DEH-Lite/wiki/Configuration),
 [Developer API](https://github.com/FauZaPespi/3DEH-Lite/wiki/Developer-API).
+
+## Community
+
+[![3DEH-Lite](https://img.shields.io/hangar/dt/3DEH-Lite?link=https%3A%2F%2Fhangar.papermc.io%2FFauZaPespi%2F3DEH-Lite&style=for-the-badge)](https://hangar.papermc.io/FauZaPespi/3DEH-Lite)
