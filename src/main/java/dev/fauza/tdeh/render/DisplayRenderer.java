@@ -1,5 +1,6 @@
 package dev.fauza.tdeh.render;
 
+import dev.fauza.tdeh.math.BlockPivot;
 import dev.fauza.tdeh.math.RotationMath;
 import dev.fauza.tdeh.model.BillboardMode;
 import dev.fauza.tdeh.model.BlockPart;
@@ -64,8 +65,13 @@ public final class DisplayRenderer {
 
     /** Pushes the current state of a part onto an already spawned entity. */
     public void apply(Display display, HologramPart part) {
+        // Block models hang off their entity position by a corner; the others are already centred.
+        Vector3f translation = part instanceof BlockPart
+                ? BlockPivot.centeringTranslation(part.translation(), part.scale(), part.rotation())
+                : toVector(part.translation());
+
         display.setTransformation(new Transformation(
-                toVector(part.translation()),
+                translation,
                 RotationMath.toQuaternion(part.rotation()),
                 toVector(part.scale()),
                 RotationMath.toQuaternion(dev.fauza.tdeh.model.EulerRotation.NONE)));

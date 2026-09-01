@@ -94,7 +94,7 @@ public final class HologramCodec {
         putIfChanged(out, "rotation",
                 List.of(rotation.yaw(), rotation.pitch(), rotation.roll()),
                 List.of(0.0, 0.0, 0.0));
-        putIfChanged(out, "billboard", part.billboard().name(), BillboardMode.CENTER.name());
+        putIfChanged(out, "billboard", part.billboard().name(), BillboardMode.FIXED.name());
         putIfChanged(out, "view-range", part.viewRange(), 1.0f);
         putIfChanged(out, "shadow-radius", part.shadowRadius(), 0.0f);
         putIfChanged(out, "shadow-strength", part.shadowStrength(), 1.0f);
@@ -185,7 +185,7 @@ public final class HologramCodec {
         Vec3 rotation = Values.optVec3(data, "rotation", Vec3.ZERO);
         part.rotation(new EulerRotation(rotation.x(), rotation.y(), rotation.z()));
 
-        String billboard = Values.optString(data, "billboard", BillboardMode.CENTER.name());
+        String billboard = Values.optString(data, "billboard", BillboardMode.FIXED.name());
         part.billboard(BillboardMode.fromId(billboard)
                 .orElseThrow(() -> new CodecException("Unknown billboard mode '" + billboard + "'")));
 

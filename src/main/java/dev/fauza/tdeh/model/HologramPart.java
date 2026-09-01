@@ -21,7 +21,7 @@ public abstract class HologramPart {
     private Vec3 scale = Vec3.ONE;
     private Vec3 translation = Vec3.ZERO;
     private EulerRotation rotation = EulerRotation.NONE;
-    private BillboardMode billboard = BillboardMode.CENTER;
+    private BillboardMode billboard = BillboardMode.FIXED;
     private float viewRange = 1.0f;
     private float shadowRadius;
     private float shadowStrength = 1.0f;
