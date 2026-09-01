@@ -54,10 +54,10 @@ public final class PluginConfig {
         FileConfiguration config = plugin.getConfig();
         Builder builder = new Builder();
 
-        String billboard = config.getString("defaults.billboard", BillboardMode.CENTER.name());
+        String billboard = config.getString("defaults.billboard", BillboardMode.FIXED.name());
         builder.defaultBillboard = BillboardMode.fromId(billboard).orElseGet(() -> {
-            plugin.getLogger().warning("Unknown defaults.billboard '" + billboard + "', using CENTER");
-            return BillboardMode.CENTER;
+            plugin.getLogger().warning("Unknown defaults.billboard '" + billboard + "', using FIXED");
+            return BillboardMode.FIXED;
         });
         builder.defaultViewRange = (float) config.getDouble("defaults.view-range", 1.0);
         builder.defaultShadowRadius = (float) config.getDouble("defaults.shadow-radius", 0.0);
@@ -116,7 +116,12 @@ public final class PluginConfig {
         return autosaveIntervalSeconds;
     }
 
-    /** Stamps a freshly created text part with the configured defaults. */
+    /**
+     * Stamps a freshly created text part with the configured defaults.
+     *
+     * <p>Defaults are a starting point, not a policy: each part keeps its own copy of every value
+     * from here on, so editing {@code config.yml} never changes a hologram that already exists.
+     */
     public void applyDefaults(TextPart part) {
         applyCommonDefaults(part);
         part.lineWidth(defaultLineWidth);
@@ -138,7 +143,7 @@ public final class PluginConfig {
     }
 
     private static final class Builder {
-        private BillboardMode defaultBillboard = BillboardMode.CENTER;
+        private BillboardMode defaultBillboard = BillboardMode.FIXED;
         private float defaultViewRange = 1.0f;
         private float defaultShadowRadius;
         private float defaultShadowStrength = 1.0f;

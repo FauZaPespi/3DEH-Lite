@@ -2,8 +2,11 @@
 # Every value here is re-read by /3deh reload.
 
 defaults:
-  # Applied to newly created parts. Individual holograms can override all of these.
-  billboard: CENTER          # FIXED, VERTICAL, HORIZONTAL, CENTER
+  # Stamped onto a part when it is created. Each part then keeps its own copy, so changing
+  # anything here leaves existing holograms untouched.
+  # FIXED never moves. VERTICAL, HORIZONTAL and CENTER turn the part towards the player, which
+  # is worth switching on per part: /3deh edit <name> billboard center
+  billboard: FIXED           # FIXED, VERTICAL, HORIZONTAL, CENTER
   view-range: 1.0            # multiplier of the client entity render distance
   shadow-radius: 0.0
   shadow-strength: 1.0

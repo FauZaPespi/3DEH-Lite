@@ -58,7 +58,7 @@ class HologramCodecTest {
         text.scale(Vec3.of(1.25));
         text.translation(new Vec3(0.1, 0.2, 0.3));
         text.rotation(new EulerRotation(90, 45, 15));
-        text.billboard(BillboardMode.FIXED);
+        text.billboard(BillboardMode.CENTER);
         text.viewRange(2.5f);
         text.shadowRadius(0.5f);
         text.shadowStrength(0.75f);
@@ -83,7 +83,7 @@ class HologramCodecTest {
         assertEquals(Vec3.of(1.25), decoded.scale());
         assertEquals(new Vec3(0.1, 0.2, 0.3), decoded.translation());
         assertEquals(new EulerRotation(90, 45, 15), decoded.rotation());
-        assertEquals(BillboardMode.FIXED, decoded.billboard());
+        assertEquals(BillboardMode.CENTER, decoded.billboard(), "an opted-in mode survives a reload");
         assertEquals(2.5f, decoded.viewRange());
         assertEquals(0.5f, decoded.shadowRadius());
         assertEquals(0.75f, decoded.shadowStrength());
@@ -143,7 +143,7 @@ class HologramCodecTest {
         TextPart part = assertInstanceOf(TextPart.class, decoded.part(0));
         assertEquals(Vec3.ZERO, part.offset());
         assertEquals(Vec3.ONE, part.scale());
-        assertEquals(BillboardMode.CENTER, part.billboard());
+        assertEquals(BillboardMode.FIXED, part.billboard(), "billboard tracking is opt-in");
         assertEquals(1.0f, part.viewRange());
         assertEquals(200, part.lineWidth());
         assertEquals(TextPart.DEFAULT_OPACITY, part.opacity());

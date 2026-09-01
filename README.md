@@ -41,6 +41,9 @@ hologram moves every part with it.
 /3deh edit shop billboard vertical
 ```
 
+Parts are centred on their position, block parts included, and they hold still. A part only turns
+towards the player once you ask it to, per part: `/3deh edit shop billboard center`.
+
 Text supports MiniMessage, legacy `&` codes including `&#rrggbb`, or plain text; the dialect is
 detected per hologram, so text pasted from an older plugin keeps working. Use `\n` for a line break.
 
